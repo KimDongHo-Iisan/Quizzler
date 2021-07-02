@@ -10,11 +10,25 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var questionLabel: UILabel!
+    @IBOutlet weak var progressBar: UIProgressView!
+    @IBOutlet weak var trueButton: UIButton!
+    @IBOutlet weak var falseButton: UIButton!
+    
+    //여러개의 퀴즈를 만들기 위해 배열을 생성
+    let quiz = [
+        "Four + Two is equal to Six.",
+        "Five - Three is greater than One",
+        "Three + Eight is less than Ten"
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        questionLabel.text = "Four + Two is equal to Six"
     }
-
-
+    
+    @IBAction func answerButtonPressed(_ sender: UIButton) {
+    }
+    
 }
 
