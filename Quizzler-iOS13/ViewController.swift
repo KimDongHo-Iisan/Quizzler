@@ -15,11 +15,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
     
-    
+    // 참,거짓을 확인하기 위해, 2차원 배열로 변경
     let quiz = [
-        "Four + Two is equal to Six.",
-        "Five - Three is greater than One",
-        "Three + Eight is less than Ten"
+        ["Four + Two is equal to Six.","True"],
+        ["Five - Three is greater than One","False"],
+        ["Three + Eight is less than Ten","False"],
     ]
     
     var questionNumber = 0
@@ -29,13 +29,21 @@ class ViewController: UIViewController {
     }
     
     @IBAction func answerButtonPressed(_ sender: UIButton) {
+        let userAnswer = sender.currentTitle // 사용자가 고른 답 -> 현재 누른 버튼
+        let actualAnswer = quiz[questionNumber][1] // 실제 답은 2차원 배열의 2번째에 있는 문자열이 답
+        
+        if userAnswer == actualAnswer { // 사용자가 고른 답과 실제 답이 맞다면,
+            print("Right") //참을 출력
+        } else {
+            print("Wrong") // 아니면 거짓
+        }
+        
         questionNumber += 1
         updateUI()
     }
     
     func updateUI() {
-        questionLabel.text = quiz[questionNumber]
+        questionLabel.text = quiz[questionNumber][0] //[0]을 붙여줘야 질문에 접근할수 있음.
     }
 }
 
-// 현재 이 코드로는 세번째 문제를 넘어가게 되면 앱이 충돌이 난다. 범위를 벗어났기 때문이다. 
