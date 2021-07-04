@@ -43,23 +43,28 @@ class ViewController: UIViewController {
         let userAnswer = sender.currentTitle
         let actualAnswer = quiz[questionNumber].answer // 실제 답
         
-        if userAnswer == actualAnswer { // 사용자가 고른 답과 실제 답이 맞다면,
-            print("Right") //참을 출력
+        if userAnswer == actualAnswer {
+            sender.backgroundColor = UIColor.green // 옳은 답을 하면 버튼의 색이 초록색
         } else {
-            print("Wrong") // 아니면 거짓
+            sender.backgroundColor = UIColor.red // 잘못되면 빨간색
         }
         
-        if questionNumber + 1 < quiz.count { // 퀴즈 번호가 퀴즈 배열의 개수보다 작으면
-            questionNumber += 1 // 번호를 1 증가 -> 퀴즈번호 + 1을 해야 배열 3을 넘어가지 않게 할수 있다.
+        if questionNumber + 1 < quiz.count {
+            questionNumber += 1
         } else {
-            questionNumber = 0 // 아니라면 0으로 가서 처음부터 다시 시작하도록 함.
+            questionNumber = 0
         }
         
         updateUI()
     }
     
+    //현재 저 코드로는 실행을 하고 나면, 버튼의 색이 변한 이후에 다시 원래 색으로 돌아오지를 않아서 정답인지 아닌지를 구별하기가 어렵다.
     func updateUI() {
-        questionLabel.text = quiz[questionNumber].text // 퀴즈의 질문
+        questionLabel.text = quiz[questionNumber].text
+        //버튼을 누른 후에 색깔이 원래대로 돌아오게 해야한다.
+        trueButton.backgroundColor = UIColor.clear
+        falseButton.backgroundColor = UIColor.clear //-->  하지만 이렇게 코드를 짜면, 이제는 색깔이 표시되지 않는다. 
+        
     }
 }
 
