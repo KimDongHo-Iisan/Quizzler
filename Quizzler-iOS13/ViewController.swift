@@ -65,6 +65,8 @@ class ViewController: UIViewController {
         questionLabel.text = quiz[questionNumber].text
         trueButton.backgroundColor = UIColor.clear
         falseButton.backgroundColor = UIColor.clear
+        //진행바 만들기
+        progressBar.progress = Float(questionNumber + 1) / Float(quiz.count) // questionNumber + 1을 해줘야 진행바의 게이지가 끝까지 갈수 있다-> 배열의 첫번째 숫자는 0부터 시작하기 때문이다.
         
     }
 }
