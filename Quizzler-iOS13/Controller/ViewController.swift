@@ -23,9 +23,9 @@ class ViewController: UIViewController {
     
     @IBAction func answerButtonPressed(_ sender: UIButton) {
         let userAnswer = sender.currentTitle! //!을 붙여서 빈 값이 아니라는 것을 컴퓨터에 인식 시켜준다.
-        quizBrain.checkAnswer(userAnswer) // quizBrain 내부에 있는 정답 찾는 메소드를 여기서 사용하는 것이다. 외부 매개변수를 사용하지 않았기 때문에 저 함수의 매개변수 값에 (userAnswer: userAnswer)가 줄여져 있는 것이다.
+        let userGotItRight = quizBrain.checkAnswer(userAnswer) //현재 userGotItRight는 Bool값을 가지고 있다.
         
-        if userAnswer == actualAnswer {
+        if userGotItRight {
             sender.backgroundColor = UIColor.green
         } else {
             sender.backgroundColor = UIColor.red

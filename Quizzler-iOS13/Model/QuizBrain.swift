@@ -29,12 +29,11 @@ struct QuizBrain {
     var questionNumber = 0
     
     //퀴즈의 정답이 맞는지 확인하는 메소드를 생성
-    //스위프트는 외부 매개 변수와 내부 매개변수를 가질수 있다. 외부에서 사용하는 변수와 내부에서 사용하는 변수가 동일 또는 외부 변수가 필요가 없을시에는 _을 앞에 붙여주면 된다.
-    func checkAnswer(_ userAnswer: String) {
+    func checkAnswer(_ userAnswer: String) -> Bool { // 출력값으로 bool을 지정해준다.
         if userAnswer == quiz[questionNumber].answer { 
-            //user got it right
+            return true
         } else {
-            //user got it wrong
+            return false
         }
     }
 }
