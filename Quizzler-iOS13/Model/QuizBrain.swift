@@ -36,4 +36,25 @@ struct QuizBrain {
             return false
         }
     }
+    
+    //퀴즈 내용 찾는 메소드
+    func getQuestionText() -> String {
+        return quiz[questionNumber].text // quiz 배열의 위치를 찾고, 그 위치에 있는 텍스트 속성을 반환한다.
+    }
+    
+    //진행률 얻는 메소드
+    func getProgress() -> Float {
+        let progress = Float(questionNumber) / Float(quiz.count)
+        return progress
+    }
+    
+    func nextQuestion() {
+        if questionNumber + 1 < quiz.count {
+            questionNumber += 1
+        } else {
+            questionNumber = 0
+        }
+        
+    }
+    
 }
