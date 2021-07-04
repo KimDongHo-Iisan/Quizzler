@@ -41,12 +41,12 @@ class ViewController: UIViewController {
     
     @IBAction func answerButtonPressed(_ sender: UIButton) {
         let userAnswer = sender.currentTitle
-        let actualAnswer = quiz[questionNumber].answer // 실제 답
+        let actualAnswer = quiz[questionNumber].answer
         
         if userAnswer == actualAnswer {
-            sender.backgroundColor = UIColor.green // 옳은 답을 하면 버튼의 색이 초록색
+            sender.backgroundColor = UIColor.green
         } else {
-            sender.backgroundColor = UIColor.red // 잘못되면 빨간색
+            sender.backgroundColor = UIColor.red
         }
         
         if questionNumber + 1 < quiz.count {
@@ -55,15 +55,16 @@ class ViewController: UIViewController {
             questionNumber = 0
         }
         
-        updateUI()
+        // 버튼의 색이 표시가 안되는것이 아니라, 색깔은 확실히 변화하고 있지만, 그 변화하는 시간이 상당히 짧아서 우리 눈에는 보이지 않는 것이다. 그렇기 때문에 timer를 이용해서 변화하는 시간 간격이 0.2초가 있도록 하고, 반복을 할 필요가 없기때문에, false, 또한 변화하지 않고, 한번만 실행 후 중지하는 타이머이기 때문에 변수로 저장할 필요도 없다.
+        Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateUI), userInfo: nil, repeats: false)
+        
     }
     
-    //현재 저 코드로는 실행을 하고 나면, 버튼의 색이 변한 이후에 다시 원래 색으로 돌아오지를 않아서 정답인지 아닌지를 구별하기가 어렵다.
-    func updateUI() {
+    //objc를 사용하기 때문에 함수 앞에 objc
+    @objc func updateUI() {
         questionLabel.text = quiz[questionNumber].text
-        //버튼을 누른 후에 색깔이 원래대로 돌아오게 해야한다.
         trueButton.backgroundColor = UIColor.clear
-        falseButton.backgroundColor = UIColor.clear //-->  하지만 이렇게 코드를 짜면, 이제는 색깔이 표시되지 않는다. 
+        falseButton.backgroundColor = UIColor.clear
         
     }
 }
