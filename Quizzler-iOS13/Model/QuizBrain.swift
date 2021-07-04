@@ -48,7 +48,9 @@ struct QuizBrain {
         return progress
     }
     
-    func nextQuestion() {
+    //다음 문제로 넘어가기 위한 메소드
+    //구조체 내부에서 속성을 변경하는 것이기 때문에 mutating 키워드를 사용
+    mutating func nextQuestion() {
         if questionNumber + 1 < quiz.count {
             questionNumber += 1
         } else {
