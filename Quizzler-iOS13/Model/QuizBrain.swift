@@ -27,14 +27,20 @@ struct QuizBrain {
     
     //퀴즈 배열의 번호를 추적하기 위해 이쪽으로 이동
     var questionNumber = 0
+    var score = 0 //score 변수를 생성.
     
     //퀴즈의 정답이 맞는지 확인하는 메소드를 생성
-    func checkAnswer(_ userAnswer: String) -> Bool { // 출력값으로 bool을 지정해준다.
-        if userAnswer == quiz[questionNumber].answer { 
+    mutating func checkAnswer(_ userAnswer: String) -> Bool {
+        if userAnswer == quiz[questionNumber].answer {
+            score += 1 //정답을 맞췄을때 1증가 -> 구조체 내부에서 속성을 변경하는 것이기 때문에 mutating 키워드
             return true
         } else {
             return false
         }
+    }
+    
+    func getScore() -> Int {
+        return score
     }
     
     //퀴즈 내용 찾는 메소드
@@ -55,8 +61,11 @@ struct QuizBrain {
             questionNumber += 1
         } else {
             questionNumber = 0
+            score = 0 // 다음 문제가 없으면 점수를 초기화
         }
         
     }
+    
+    
     
 }
